@@ -14,7 +14,7 @@ const verifi = async () => {
   try {
     const pkg = await fs.readFile("./package.json", "utf-8");
     const json = JSON.parse(pkg);
-    return json.repository?.['url'] === "git+https://github.com/Aqua200/Ouka-MD.git";
+    return json.repository?.['url'] === "git+https://github.com/ScriptNex/Legacy-MD.git";
   } catch {
     return false;
   }
@@ -22,7 +22,7 @@ const verifi = async () => {
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!(await verifi())) {
-    return conn.reply(m.chat, `❀ El comando *<${command}>* solo está disponible para Ouka-MD.\n> https://github.com/Aqua200/Ouka-MD`, m);
+    return conn.reply(m.chat, `❀ El comando *<${command}>* solo está disponible para Legacy-MD.\n> https://github.com/ScriptNex/Legacy-MD.git`, m);
   }
 
   if (!global.db.data.chats?.[m.chat]?.gacha && m.isGroup) {
