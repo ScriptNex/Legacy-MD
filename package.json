@@ -13,14 +13,14 @@
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/Aqua200/Legacy-MD.git"
+"url": "git+https://github.com/ScriptNex/Legacy-MD.git"
 },  
 "author": "Aqua200",
 "license": "MIT-License",
 "bugs": {
-"url": "https://github.com/Aqua200/Legacy-MD/issues"
+"url": "https://github.com/ScriptNex/Legacy-MD.git"
 },
-"homepage": "https://github.com/Aquq200/Legacy-MD#readme",
+"homepage": "https://github.com/ScriptNex/Legacy-MD.git",
 "dependencies": {
 "@hapi/boom": "^10.0.1",
 "@vitalets/google-translate-api": "^8.0.0",
