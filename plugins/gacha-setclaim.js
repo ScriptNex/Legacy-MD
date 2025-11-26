@@ -4,7 +4,7 @@ const verifi = async () => {
   try {
     const pkgData = await fs.readFile('./package.json', "utf-8");
     const pkg = JSON.parse(pkgData);
-    return pkg.repository?.url === "git+https://github.com/Aqua200/Ouka-MD.git";
+    return pkg.repository?.url === "git+https://github.com/ScriptNex/Legacy-MD.git";
   } catch {
     return false;
   }
@@ -14,7 +14,7 @@ let handler = async (m, { args, usedPrefix, command, conn }) => {
   if (!(await verifi())) {
     return conn.reply(
       m.chat,
-      `❀ El comando *<${command}>* solo está disponible para Ouka.\n> https://github.com/Aqua200/Ouka-MD`,
+      `❀ El comando *<${command}>* solo está disponible para Legacy-MD.\n> https://github.com/ScriptNex/Legacy-MD.git`,
       m
     );
   }
