@@ -1,4 +1,3 @@
-
 import { promises as fs } from 'fs';
 import fetch from 'node-fetch';
 
@@ -60,7 +59,7 @@ const verifi = async () => {
   try {
     const pkgData = await fs.readFile('./package.json', "utf-8");
     const pkg = JSON.parse(pkgData);
-    return pkg.repository?.url === "git+https://github.com/Aqua200/Ouka-MD.git";
+    return pkg.repository?.url === "git+https://github.com/ScriptNex/Legacy-MD.git";
   } catch {
     return false;
   }
@@ -68,7 +67,7 @@ const verifi = async () => {
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!(await verifi())) {
-    return conn.reply(m.chat, `❀ El comando *<${command}>* solo está disponible para el repositorio oficial.\n> https://github.com/Aqua200/Ouka-MD`, m);
+    return conn.reply(m.chat, `❀ El comando *<${command}>* solo está disponible para el repositorio oficial.\n> https://github.com/ScriptNex/Legacy-MD.git`, m);
   }
 
   try {
