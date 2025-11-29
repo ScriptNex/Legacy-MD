@@ -23,11 +23,13 @@ let handler = async (m, { conn, args, participants, usedPrefix }) => {
     const { jid, coin, bank } = slice[i]
     const total = (coin || 0) + (bank || 0)
 
-    let rawName = global.db.data.users[jid]?.name || ''
+        let rawName = global.db.data.users[jid]?.name || ''
     rawName = typeof rawName === 'string' ? rawName.trim() : ''
 
-    let name = rawName || await conn.getName(jid).catch(() => jid.split('@')[0])
+      let fetched = await Promise.resolve(conn.getName(jid)).catch(() => jid.split('@')[0])
+    let name = rawName || fetched
     name = typeof name === 'string' && name.trim() ? name.trim() : jid.split('@')[0]
+    // ------------------------------------
 
     text += `✰ ${startIndex + i + 1} » *${name}:*\n`
     text += `\t\t Total→ *¥${total.toLocaleString()} ${currency}*\n`
