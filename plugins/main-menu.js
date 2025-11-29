@@ -12,6 +12,14 @@ let txt = `
 
 > Hola  @${userId.split('@')[0]}, Soy *${botname}*,aquí tienes tu menú ✧˖°
 
+੭₍⸝⸝> ⩊ <⸝⸝₎੭  Info del bot ⋆｡°✩
+
+• *Tipo*: ${tipo}
+• *Usuarios*: ${totalreg.toLocaleString()}
+• *Versión*: ${vs}
+• *Plugins*: ${totalCommands}
+• *Librería": ${libreria}
+
 `.trim()
 await conn.sendMessage(m.chat, { 
 text: txt,
