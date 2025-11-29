@@ -14,7 +14,7 @@ let txt = `
 
 ੭₍⸝⸝> ⩊ <⸝⸝₎੭  Info del bot ⋆｡°✩
 
-• *Tipo*: ${tipo}
+• *Tipo*: ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-Bot')}
 • *Usuarios*: ${totalreg.toLocaleString()}
 • *Versión*: ${vs}
 • *Plugins*: ${totalCommands}
