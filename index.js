@@ -6,7 +6,8 @@ import { createRequire } from 'module'
 import { fileURLToPath, pathToFileURL } from 'url'
 import { platform } from 'process'
 import * as ws from 'ws'
-import fs, { readdirSync, statSync, unlinkSync, existsSync, mkdirSync, readFileSync, rmSync, watch } from 'fs'
+import fs, { readdirSync, statSync, existsSync, mkdirSync, readFileSync, rmSync, watch } from 'fs'
+import { unlink } from 'fs/promises'
 import yargs from 'yargs';
 import { spawn, execSync } from 'child_process'
 import lodash from 'lodash'
@@ -168,11 +169,17 @@ console.log(chalk.bold.white(chalk.bgMagenta(`[ ✿ ]  Código:`)), chalk.bold.w
 conn.isInit = false;
 conn.well = false;
 conn.logger.info(`[ ✿ ]  H E C H O\n`)
-if (!opts['test']) {
+
+ñif (!opts['test']) {
 if (global.db) setInterval(async () => {
 if (global.db.data) await global.db.write()
-if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', `${jadi}`], tmp.forEach((filename) => cp.spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete'])));
-}, 30 * 1000);
+if (opts['autocleartmp'] && (global.support || {}).find) {
+const tmp = [os.tmpdir(), 'tmp', `${jadi}`]
+tmp.forEach((filename) => {
+cp.spawn('find', [filename, '-amin', '10', '-type', 'f', '-delete'])
+});
+}
+}, 10 * 60 * 1000); // 10 minutos en lugar de 30 segundos
 }
 
 async function connectionUpdate(update) {
@@ -264,7 +271,7 @@ if (global.OukaJadibts) {
             const botPath = join(global.rutaJadiBot, gjbts)
             const readBotPath = readdirSync(botPath)
             if (readBotPath.includes(creds)) {
-                // inestable 
+                
                 OukaJadibts({ path0ukaJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot' })
             }
         }
@@ -274,16 +281,38 @@ if (global.OukaJadibts) {
 const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = (filename) => /\.js$/.test(filename)
 global.plugins = {}
+
+const loadPlugin = async (filename) => {
+    if (!global.plugins[filename]) {
+        try {
+            const file = global.__filename(join(pluginFolder, filename))
+            const module = await import(file)
+            global.plugins[filename] = module.default || module
+        } catch (e) {
+            conn.logger.error(`Error loading plugin ${filename}:`, e)
+            delete global.plugins[filename]
+        }
+    }
+    return global.plugins[filename]
+}
+
 async function filesInit() {
-for (const filename of readdirSync(pluginFolder).filter(pluginFilter)) {
-try {
-const file = global.__filename(join(pluginFolder, filename))
-const module = await import(file)
-global.plugins[filename] = module.default || module
-} catch (e) {
-conn.logger.error(e)
-delete global.plugins[filename]
-}}}
+    const pluginFiles = readdirSync(pluginFolder).filter(pluginFilter)
+    
+    const essentialPlugins = pluginFiles.filter(name => 
+        name.includes('main') || name.includes('essential') || name.includes('core')
+    )
+    
+    for (const filename of essentialPlugins) {
+        await loadPlugin(filename)
+    }
+    
+    const otherPlugins = pluginFiles.filter(name => !essentialPlugins.includes(name))
+    const loadPromises = otherPlugins.map(filename => loadPlugin(filename))
+    await Promise.allSettled(loadPromises)
+    
+    console.log(chalk.green(`✓ Cargados ${Object.keys(global.plugins).length} plugins`))
+}
 filesInit().then((_) => Object.keys(global.plugins)).catch(console.error)
 
 global.reload = async (_ev, filename) => {
@@ -312,6 +341,7 @@ global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b
 Object.freeze(global.reload)
 watch(pluginFolder, global.reload)
 await global.reloadHandler()
+
 async function _quickTest() {
 const test = await Promise.all([
 spawn('ffmpeg'),
@@ -336,19 +366,40 @@ const [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test;
 const s = global.support = {ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find};
 Object.freeze(global.support);
 }
-// Tmp
+
+// OPTIMIZACIÓN: Limpieza TMP más eficiente y menos frecuente
 setInterval(async () => {
-const tmpDir = join(__dirname, 'tmp')
-try {
-const filenames = readdirSync(tmpDir)
-filenames.forEach(file => {
-const filePath = join(tmpDir, file)
-unlinkSync(filePath)})
-console.log(chalk.gray(`→ Archivos de la carpeta TMP eliminados`))
-} catch {
-console.log(chalk.gray(`→ Los archivos de la carpeta TMP no se pudieron eliminar`));
-}}, 30 * 1000) 
+    const tmpDir = join(__dirname, 'tmp')
+    try {
+        if (existsSync(tmpDir)) {
+            const filenames = readdirSync(tmpDir)
+            const deletePromises = filenames.map(async (file) => {
+                const filePath = join(tmpDir, file)
+                try {
+                await unlink(filePath)
+                } catch (error) {
+                }
+            })
+            await Promise.allSettled(deletePromises)
+            
+            if (filenames.length > 0) {
+                console.log(chalk.gray(`→ Eliminados ${filenames.length} archivos temporales`))
+            }
+        }
+    } catch (error) {
+        console.log(chalk.gray(`→ No se pudieron eliminar algunos archivos temporales`))
+    }
+}, 10 * 60 * 1000) // 10 minutos en lugar de 30 segundos
+
+setInterval(() => {
+    if (process.env.DEBUG_MEMORY) {
+        const used = process.memoryUsage();
+        console.log(chalk.blue(`📊 Memoria: ${Math.round(used.heapUsed / 1024 / 1024)}MB`));
+    }
+}, 5 * 60 * 1000); // Cada 5 minutos solo en modo debug
+
 _quickTest().catch(console.error)
+
 async function isValidPhoneNumber(number) {
 try {
 number = number.replace(/\s+/g, '')
