@@ -10,7 +10,7 @@ let txt = `
 ˗ˏˋ ♡  L E G A C Y - M D  ♡ ˎˊ˗
         𝘛𝘶 𝘣𝘰𝘵 𝘤𝘪𝘯𝘵𝘪𝘭𝘭𝘢𝘯𝘵𝘦 🌸
 
-Hola @usuario, aquí tienes tu menú ✧˖°
+> Hola  @${userId.split('@')[0]}, Soy *${botname}*,aquí tienes tu menú ✧˖°
 
 `.trim()
 await conn.sendMessage(m.chat, { 
