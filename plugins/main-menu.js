@@ -17,7 +17,6 @@ let txt = `
 • *Plugins*: ${totalCommands}
 • *Librería*: ${libreria}
 
-╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
 > ✿ Comandos de *Economía* para ganar dinero.
 ✦ *#w • #work • #trabajar*
 > ⸙ Ganar coins trabajando.
@@ -65,7 +64,6 @@ let txt = `
 > ⸙ Ganar coins y exp pescando.
 ✦ *#mazmorra • #dungeon*
 > ⸙ Explorar mazmorras para ganar coins y exp.
-╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 
 
