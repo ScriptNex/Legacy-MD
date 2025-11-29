@@ -5,21 +5,18 @@ let mentionedJid = await m.mentionedJid
 let userId = mentionedJid && mentionedJid[0] ? mentionedJid[0] : m.sender
 let totalreg = Object.keys(global.db.data.users).length
 let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
-    
+
 let txt = `̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮
 ︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
-> ❀ Hola! @${userId.split('@')[0]}, Soy *${botname}*, aquí tienes la lista de comandos.
+> ❀ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
 
 ╭┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
-
 │✦ *Tipo* » ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-Bot')}
 │✰ *Usuarios* » ${totalreg.toLocaleString()}
 │⚘ *Versión* » ${vs}
 │ꕥ *Plugins* » ${totalCommands}
 │🜸 *Librería* » ${libreria}
-
 ╰ׅ┈ࠢ͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴ ⋱࣭ ᩴ  ⋮֔   ᩴ ⋰╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜┈ࠢ͜╯ׅ
-
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
 > ✿ Comandos de *Economía* para ganar dinero.
@@ -75,6 +72,8 @@ let txt = `̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮  
 > ✿ Comandos de *Descargas* para descargar archivos de varias fuentes.
 ✦ *#tiktok • #tt* + [Link] / [busqueda]
 > ⸙ Descargar un video de TikTok.
+✦ *#wagroups • #wpgroups* + [busqueda]
+> ⸙ Buscar grupos de WhatsApp.
 ✦ *#mediafire • #mf* + [Link]
 > ⸙ Descargar un archivo de MediaFire.
 ✦ *#mega • #mg* + [Link]
@@ -209,8 +208,12 @@ let txt = `̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮  
 > ⸙ Traducir palabras en otros idiomas.
 ✦ *#ia • #gemini*
 > ⸙ Preguntar a Chatgpt.
+✦ *#iavoz • #aivoz*
+> ⸙ Hablar o preguntar a chatgpt mexicano modo voz.
 ✦ *#tourl • #catbox*
 > ⸙ Convertidor de imágen/video en urls.
+✦ *#wiki • #wikipedia*
+> ⸙ Investigar temas a través de Wikipedia.
 ✦ *#dalle • #flux*
 > ⸙ Crear imágenes con texto mediante IA.
 ✦ *#npmdl • #nmpjs*
