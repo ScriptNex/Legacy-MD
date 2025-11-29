@@ -15,7 +15,60 @@ let txt = `
 • *Usuarios*: ${totalreg.toLocaleString()}
 • *Versión*: ${vs}
 • *Plugins*: ${totalCommands}
-• *Librería*": ${libreria}
+• *Librería*: ${libreria}
+
+╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
+> ✿ Comandos de *Economía* para ganar dinero.
+✦ *#w • #work • #trabajar*
+> ⸙ Ganar coins trabajando.
+✦ *#slut • #protituirse*
+> ⸙ Ganar coins prostituyéndote.
+✦ *#coinflip • #flip • #cf* + [cantidad] <cara/cruz>
+> ⸙ Apostar coins en un cara o cruz.
+✦ *#crime • #crimen*
+> ⸙ Ganar coins rapido.
+✦ *#roulette • #rt* + [red/black] [cantidad]
+> ⸙ Apostar coins en una ruleta.
+✦ *#casino • #apostar* • *#slot* + [cantidad]
+> ⸙ Apuestar coins en el casino.
+✦ *#balance • #bal • #bank* + <usuario>
+> ⸙ Ver cuantos coins tienes en el banco.
+✦ *#deposit • #dep • #depositar • #d* + [cantidad] | all
+> ⸙ Depositar tus coins en el banco.
+✦ *#withdraw • #with • #retirar* + [cantidad] | all
+> ⸙ Retirar tus coins del banco.
+✦ *#economyinfo • #einfo*
+> ⸙ Ver tu información de economía en el grupo.
+✦ *#givecoins • #pay • #coinsgive* + [usuario] [cantidad]
+> ⸙ Dar coins a un usuario.
+✦ *#miming • #minar • #mine*
+> ⸙ Realizar trabajos de minería y ganar coins.
+✦ *#daily • #diario*
+> ⸙ Reclamar tu recompensa diaria.
+✦ *#cofre* • *#coffer*
+> ⸙ Reclamar tu cofre diario.
+✦ *#weekly • #semanal*
+> ⸙ Reclamar tu recompensa semanal.
+✦ *#monthly • #mensual*
+> ⸙ Reclamar tu recompensa mensual.
+✦ *#steal • #robar • #rob* + [@mencion]
+> ⸙ Intentar robar coins a un usuario.
+✦ *#economyboard • #eboard • #baltop* + <pagina>
+> ⸙ Ver tu información de economía en el grupo.
+✦ *#aventura • #adventure*
+> ⸙ Aventuras para ganar coins y exp.
+✦ *#curar • #heal*
+> ⸙ Curar salud para salir de aventuras.
+✦ *#cazar • #hunt*
+> ⸙ cazar animales para ganar coins y exp.
+✦ *#fish • #pescar*
+> ⸙ Ganar coins y exp pescando.
+✦ *#mazmorra • #dungeon*
+> ⸙ Explorar mazmorras para ganar coins y exp.
+╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
+
+
+
 
 `.trim()
 await conn.sendMessage(m.chat, { 
