@@ -170,9 +170,11 @@ conn.isInit = false;
 conn.well = false;
 conn.logger.info(`[ ✿ ]  H E C H O\n`)
 
-ñif (!opts['test']) {
+// OPTIMIZACIÓN: Reducir frecuencia de escritura de DB y limpieza
+if (!opts['test']) {
 if (global.db) setInterval(async () => {
 if (global.db.data) await global.db.write()
+// Reducir frecuencia de autocleartmp a 10 minutos
 if (opts['autocleartmp'] && (global.support || {}).find) {
 const tmp = [os.tmpdir(), 'tmp', `${jadi}`]
 tmp.forEach((filename) => {
@@ -271,7 +273,7 @@ if (global.OukaJadibts) {
             const botPath = join(global.rutaJadiBot, gjbts)
             const readBotPath = readdirSync(botPath)
             if (readBotPath.includes(creds)) {
-                
+                // inestable 
                 OukaJadibts({ path0ukaJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot' })
             }
         }
@@ -282,6 +284,7 @@ const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = (filename) => /\.js$/.test(filename)
 global.plugins = {}
 
+// OPTIMIZACIÓN: Carga lazy de plugins
 const loadPlugin = async (filename) => {
     if (!global.plugins[filename]) {
         try {
@@ -299,14 +302,17 @@ const loadPlugin = async (filename) => {
 async function filesInit() {
     const pluginFiles = readdirSync(pluginFolder).filter(pluginFilter)
     
+    // Cargar solo plugins esenciales primero
     const essentialPlugins = pluginFiles.filter(name => 
         name.includes('main') || name.includes('essential') || name.includes('core')
     )
     
+    // Cargar plugins esenciales de forma síncrona
     for (const filename of essentialPlugins) {
         await loadPlugin(filename)
     }
     
+    // Cargar el resto de forma asíncrona
     const otherPlugins = pluginFiles.filter(name => !essentialPlugins.includes(name))
     const loadPromises = otherPlugins.map(filename => loadPlugin(filename))
     await Promise.allSettled(loadPromises)
@@ -376,8 +382,10 @@ setInterval(async () => {
             const deletePromises = filenames.map(async (file) => {
                 const filePath = join(tmpDir, file)
                 try {
-                await unlink(filePath)
+                    // Usar versión asíncrona para no bloquear
+                    await unlink(filePath)
                 } catch (error) {
+                    // Ignorar errores de archivos ya eliminados
                 }
             })
             await Promise.allSettled(deletePromises)
@@ -391,6 +399,7 @@ setInterval(async () => {
     }
 }, 10 * 60 * 1000) // 10 minutos en lugar de 30 segundos
 
+// OPTIMIZACIÓN: Monitor de memoria para debugging
 setInterval(() => {
     if (process.env.DEBUG_MEMORY) {
         const used = process.memoryUsage();
