@@ -208,8 +208,6 @@ let txt = `̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮  
 > ⸙ Preguntar a Chatgpt.
 ✦ *#tourl • #catbox*
 > ⸙ Convertidor de imágen/video en urls.
-✦ *#wiki • #wikipedia*
-> ⸙ Investigar temas a través de Wikipedia.
 ✦ *#dalle • #flux*
 > ⸙ Crear imágenes con texto mediante IA.
 ✦ *#npmdl • #nmpjs*
