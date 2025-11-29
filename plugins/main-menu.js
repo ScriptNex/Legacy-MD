@@ -5,7 +5,6 @@ let mentionedJid = await m.mentionedJid
 let userId = mentionedJid && mentionedJid[0] ? mentionedJid[0] : m.sender
 let totalreg = Object.keys(global.db.data.users).length
 let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
-const readMore = "\n".repeat(120) + String.fromCharCode(8206).repeat(1800)
 
 let txt = `
 > Hola  @${userId.split('@')[0]}, Soy *${botname}*,aquí tienes tu menú ✧˖°
@@ -17,7 +16,7 @@ let txt = `
 • *Versión*: ${vs}
 • *Plugins*: ${totalCommands}
 • *Librería*: ${libreria}
-${readMore}
+
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
 > ✿ Comandos de *Economía* para ganar dinero.
 ✦ *#w • #work • #trabajar*
