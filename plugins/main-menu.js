@@ -17,9 +17,7 @@ let txt = `
 • *Versión*: ${vs}
 • *Plugins*: ${totalCommands}
 • *Librería*: ${libreria}
-
 ${readMore}
-
 > ✿ Comandos de *Economía* para ganar dinero.
 ✦ *#w • #work • #trabajar*
 > ⸙ Ganar coins trabajando.
