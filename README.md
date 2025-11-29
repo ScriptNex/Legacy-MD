@@ -147,5 +147,5 @@ cd && cd Legacy-MD && nano settings.js
 
 ### **`ᥫ᭡ Propietario`**
 <a
-href="https://github.com/Aqua200"><img src="https://github.com/Aqua200.png" width="130" height="130" alt="
+href="https://github.com/ScriptNex"><img src="https://github.com/ScriptNex.png" width="130" height="130" alt="
 Neykoor"/></a>
