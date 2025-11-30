@@ -15,12 +15,12 @@
 "type": "git",
 "url": "git+https://github.com/ScriptNex/Legacy-MD.git"
 },  
-"author": "Aqua200",
+"author": "ScriptNex",
 "license": "MIT-License",
 "bugs": {
 "url": "https://github.com/ScriptNex/Legacy-MD.git"
 },
-"homepage": "https://github.com/ScriptNex/Legacy-MD.git",
+"homepage": "https://github.com/ScriptNex/Legacy-MD.git#readme",
 "dependencies": {
 "@hapi/boom": "^10.0.1",
 "@vitalets/google-translate-api": "^8.0.0",
